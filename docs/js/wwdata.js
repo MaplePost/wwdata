@@ -13,7 +13,7 @@ function chartme(data) {
 
     // load the data set from the data pasered in wwdataLoad function
     $("#lastValue").html(data.lastValue);
-    $("#lastUpdated").html("last updated:" + data.lastUpdated);
+    $("#lastUpdated").html("last updated:" + new Date(data.lastUpdated));
     $("#localStatus").html("status: OK");
     $("#currentValue").html(data.currentValue);
 

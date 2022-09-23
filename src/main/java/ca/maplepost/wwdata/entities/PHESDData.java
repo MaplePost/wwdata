@@ -4,39 +4,59 @@
  */
 package ca.maplepost.wwdata.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Date;
 
 /**
  *
  * @author peterslack
  */
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class PHESDData {
-    
   private Date  sampleDate;
   private String sampleID;
   private String siteID;
   private String siteName;
   private String  reportDate;
-  private String covN1_nPMMoV_meanNr;
-  private String covN1_nPMMoV_sdNr;
-  private String covN2_nPMMoV_meanNr;
-  private String covN2_nPMMoV_sdNr;
-  private String nPPMoV_Ct_mean;
-/*    "detectB117",
-    "fractionB117",
-    "fractionB117_stdev",
-    "test_delta",
-    "detect_delta",
-    "fraction_delta",
-    "fraction_delta_stdev",
-    "testC2811T",
-    "detectC2811T",
-    "fractionC2811T",
-    "fractionC2811T_stdev"
-*/
+  private Double covN1_nPMMoV_meanNr;
+  private Double covN1_nPMMoV_sdNr;
+  private Double covN2_nPMMoV_meanNr;
+  private Double covN2_nPMMoV_sdNr;
+  private Double nPPMoV_Ct_mean;
 
+    public PHESDData(PHESDDataRaw rawData) {
+        
+        sampleDate = rawData.getSampleDate();
+        sampleID = rawData.getSampleID();
+        siteID = rawData.getSiteID();
+        siteName = rawData.getSiteName();
+        reportDate = rawData.getReportDate();
+        
+        //we have to do this because they decided to put NA in the numeric data
+        if (rawData.getCovN1_nPMMoV_meanNr().equals("NA")) {
+            rawData.setCovN1_nPMMoV_meanNr("0.0");
+        }
+        if (rawData.getCovN1_nPMMoV_sdNr().equals("NA")) {
+            rawData.setCovN1_nPMMoV_sdNr("0.0");
+        }
+        if (rawData.getCovN2_nPMMoV_meanNr().equals("NA")) {
+            rawData.setCovN2_nPMMoV_meanNr("0.0");
+        }
+        if (rawData.getCovN2_nPMMoV_sdNr().equals("NA")) {
+            rawData.setCovN2_nPMMoV_sdNr("0.0");
+        }
+        if (rawData.getnPPMoV_Ct_mean().equals("NA")) {
+            rawData.setnPPMoV_Ct_mean("0.0");
+        }
+        
+        covN1_nPMMoV_meanNr = Double.parseDouble(rawData.getCovN1_nPMMoV_meanNr());
+        covN1_nPMMoV_sdNr = Double.parseDouble(rawData.getCovN1_nPMMoV_sdNr());
+        covN2_nPMMoV_meanNr = Double.parseDouble(rawData.getCovN2_nPMMoV_meanNr());
+        covN2_nPMMoV_sdNr = Double.parseDouble(rawData.getCovN2_nPMMoV_sdNr());
+        nPPMoV_Ct_mean = Double.parseDouble(rawData.getnPPMoV_Ct_mean());
+        
+    }
+
+  
+  
     public Date getSampleDate() {
         return sampleDate;
     }
@@ -77,48 +97,46 @@ public class PHESDData {
         this.reportDate = reportDate;
     }
 
-    public String getCovN1_nPMMoV_meanNr() {
+    public Double getCovN1_nPMMoV_meanNr() {
         return covN1_nPMMoV_meanNr;
     }
 
-    public void setCovN1_nPMMoV_meanNr(String covN1_nPMMoV_meanNr) {
+    public void setCovN1_nPMMoV_meanNr(Double covN1_nPMMoV_meanNr) {
         this.covN1_nPMMoV_meanNr = covN1_nPMMoV_meanNr;
     }
 
-    public String getCovN1_nPMMoV_sdNr() {
+    public Double getCovN1_nPMMoV_sdNr() {
         return covN1_nPMMoV_sdNr;
     }
 
-    public void setCovN1_nPMMoV_sdNr(String covN1_nPMMoV_sdNr) {
+    public void setCovN1_nPMMoV_sdNr(Double covN1_nPMMoV_sdNr) {
         this.covN1_nPMMoV_sdNr = covN1_nPMMoV_sdNr;
     }
 
-    public String getCovN2_nPMMoV_meanNr() {
+    public Double getCovN2_nPMMoV_meanNr() {
         return covN2_nPMMoV_meanNr;
     }
 
-    public void setCovN2_nPMMoV_meanNr(String covN2_nPMMoV_meanNr) {
+    public void setCovN2_nPMMoV_meanNr(Double covN2_nPMMoV_meanNr) {
         this.covN2_nPMMoV_meanNr = covN2_nPMMoV_meanNr;
     }
 
-    public String getCovN2_nPMMoV_sdNr() {
+    public Double getCovN2_nPMMoV_sdNr() {
         return covN2_nPMMoV_sdNr;
     }
 
-    public void setCovN2_nPMMoV_sdNr(String covN2_nPMMoV_sdNr) {
+    public void setCovN2_nPMMoV_sdNr(Double covN2_nPMMoV_sdNr) {
         this.covN2_nPMMoV_sdNr = covN2_nPMMoV_sdNr;
     }
 
-    public String getnPPMoV_Ct_mean() {
+    public Double getnPPMoV_Ct_mean() {
         return nPPMoV_Ct_mean;
     }
 
-    public void setnPPMoV_Ct_mean(String nPPMoV_Ct_mean) {
+    public void setnPPMoV_Ct_mean(Double nPPMoV_Ct_mean) {
         this.nPPMoV_Ct_mean = nPPMoV_Ct_mean;
     }
 
-
   
   
-    
 }
