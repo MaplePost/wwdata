@@ -30,7 +30,7 @@
 
 
   <div class="widget warning">
-    <p>This site is under construction, and the data is not valid (yet).</p>
+    <p>This site is under construction, and the data is not valid (yet &#128520;).</p>
   </div>
 
 	<div class="container">
@@ -46,6 +46,10 @@
     <div class="widget">
       <h2 id="currentValue">#######</h2> <!--DATA GOES HERE -->
       <p>This Week</p>
+    </div>
+    <div class="container wastewater-same">
+      <img src="img/wastewater-same.svg" alt="Wastewater Same" height="65" width="40">
+      <p>Wastewater levels have remained the same over the last week.</p>
     </div>
 
 
@@ -68,8 +72,33 @@
     <p>This is a status message.</p>
   </div>
 
+  <div class="container">
+    <h2>Wastewater change styles</h2>
+  </div>
+  <section class="flex">
+  <div class="container wastewater-same">
+    <img src="img/wastewater-same.svg" alt="Wastewater Same" height="65" width="40">
+    <p>Wastewater levels have remained the same over the last week.</p>
+  </div>
+  <div class="container wastewater-up">
+    <img src="img/wastewater-up.svg" alt="Wastewater Up" height="65" width="40">
+    <p>Wastewater levels have gone up over the last week.</p>
+  </div>
+  <div class="container wastewater-down">
+    <img src="img/wastewater-down.svg" alt="Wastewater Down" height="65" width="40">
+    <p>Wastewater levels have gone down over the last week.</p>
+  </div>
+</section>
+
 <!-- Site Status -->
   <footer class="flex widget status floating">
+    <p>
+      This site was last updated on <span id="lastUpdated" class="word-data">#########</span>, and the status is <span class="word-data">#########</span>.
+    </p>
+    </footer>
+
+    <!--I'm just using this until I figure out what I'm doing for show/hide on the floating footer don't judge meeee -->
+    <div class="flex widget status">
     <p>
       This site was last updated on <span id="lastUpdated" class="word-data">#########</span>, and the status is <span class="word-data">#########</span>.
     </p>
