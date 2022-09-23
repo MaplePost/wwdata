@@ -25,21 +25,38 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
     <link rel="shortcut icon" href="favicon.ico">
+
+
+  
   </head>
-  <body onload="prettyPrint()">
+  <body>
+
+
 	<div class="page-header">
 		<h1>Wastewater Levels</h1>
+    <h2> UNDER CONSTRUCTION DATA IS NOT VALID</h2>
+
 	</div>
 
   <div class="container">
     <div class="widget">
-      <h2>0.0123456</h2> <!--DATA GOES HERE -->
+      <!-- these values are set by the javascript process if you see ###### then you need to be serving this from a real web server -->
+      <h2 id="lastValue">#######</h2> <!--DATA GOES HERE -->
       <p>Last Week</p>
     </div>
     <div class="widget">
-      <h2>0.023445</h2> <!--DATA GOES HERE -->
+      <h2 id="currentValue">#######</h2> <!--DATA GOES HERE -->
       <p>This Week</p>
     </div>
+    <div class="widget">
+    <h3 id="lastUpdated">
+      last updated: #########
+    </h3>
+    <h3 id="localStatus">
+      status: #########
+    </h3>
+    </div>
+
   </div>
 
     
