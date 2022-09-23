@@ -15,8 +15,10 @@ public class Wwdata {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        Properties properties = System.getProperties();
-        // Java 8
-        properties.forEach((k, v) -> System.out.println(k + ":" + v));
+        
+        System.out.println(args[0]);
+        
+        
+        
     }
 }

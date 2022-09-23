@@ -26,8 +26,7 @@
      <configuration>  
       <mainClass>ca.maplepost.wwdata.Wwdata</mainClass>  
       <arguments>  
-       <argument>arg0</argument>  
-       <argument>arg1</argument>  
+       <argument>${basedir}</argument>  
       </arguments>  
       <includeProjectDependencies>true</includeProjectDependencies>
      </configuration>  
@@ -38,7 +37,35 @@
 </build>  
 
 <dependencies>
-    
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-csv -->
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-csv</artifactId>
+    <version>2.13.4</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.13.4</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-annotations</artifactId>
+    <version>2.13.4</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.13.4</version>
+</dependency>
+
+
 </dependencies>   
     
 </project>
