@@ -25,6 +25,11 @@ body {
   right: 0;
 }
 
+.word-data{
+  color: #fec7d7;
+
+}
+
 
 /* Widget */
 .widget {
