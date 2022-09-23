@@ -12,6 +12,7 @@ body {
 /* Flexbox */
 .flex {
   display: flex; /* or inline-flex */
+  flex-wrap: wrap;
 }
 
 .container {
@@ -60,6 +61,10 @@ body {
 /* Status widget */
 .status {
   background-color: #BF9AFF;
+}
+
+.wastewater-status{
+  width: 12rem;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
