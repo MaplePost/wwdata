@@ -4,21 +4,21 @@ body {
   background-color: #FEC7D7;
   color: #0E172C;
   font-family: "karla",sans-serif;
+  font-weight: bolder;
+  font-size: 1rem;
   /* The html and body elements cannot have any padding or margin. */
 }
 
+
 /* Flexbox */
-.container {
+.flex {
   display: flex; /* or inline-flex */
 }
 
-.page-header{
+.container {
   margin: 20px;
 }
 
-h1{
-  font-style: 500;
-}
 
 /* Widget */
 .widget {
@@ -29,6 +29,26 @@ h1{
   border-width: 6px;
   border-color: #0E172C;
   border-radius: 10px;
+}
+
+/* Error widget */
+.error {
+  background-color: #FF7878;
+}
+
+/* Warning widget */
+.warning {
+  background-color: #FFE67B;
+}
+
+/* Success widget */
+.success {
+  background-color: #87DD87;
+}
+
+/* Status widget */
+.status {
+  background-color: #BF9AFF;
 }
 
 /* Lastly, apply responsive CSS fixes as necessary */
