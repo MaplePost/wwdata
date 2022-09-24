@@ -98,11 +98,11 @@ function chartme(data) {
 
 // let's make a chart here using dimple
 
-var svg = dimple.newSvg("#fourteenDayChart", 590, 400);
+var svg = dimple.newSvg("#fourteenDayChart", 400, 400);
 
 
  var myChart = new dimple.chart(svg, chartdata);
- myChart.setBounds(60, 30, 505, 305);
+ myChart.setBounds(60, 30, 365, 305);
  var x = myChart.addCategoryAxis("x", "Date");
  x.addOrderRule("Date");
  myChart.addMeasureAxis("y", "value");
