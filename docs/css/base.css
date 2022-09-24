@@ -36,7 +36,7 @@ body {
 .widget {
   background-color: #D9D4E7;
   padding: 20px;
-  margin: 20px;
+  margin: 10px;
   border-style: solid;
   border-width: 6px;
   border-color: #0E172C;
@@ -64,10 +64,5 @@ body {
 }
 
 .wastewater-status{
-  width: 12rem;
-}
-
-/* Lastly, apply responsive CSS fixes as necessary */
-@media (max-width: 767px) {
-
+  width: 10rem;
 }
