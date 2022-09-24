@@ -14,34 +14,59 @@ function chartme(data) {
 
     //Our custom chart data
     var chartdata = [];
+    var allTimeData = [];
     var valueMatrix = [];
     var sevenDayWindow = [];
     var fourteenDayWindow = [];
     var previousWeekAverage = 0.0;
     var currentWeekAverage = 0.0;
 
+    var allTimeMax;
+    var allTimeMin;
+
     // using date math to determine our beginning window of data
     // we want 14 days window beginning at the last updated
     var begindate = data.lastUpdated - 14 * 24 * 60 * 60 * 1000;
-    // this is our 7 day window
+    // this is our 7 day window point
     var sevenday = data.lastUpdated - 7 * 24 * 60 * 60 * 1000;
     
+    // calculate all time max and mins
+    // this sets up our 14 day chart and the previous and current week averages
+    data.phesdData.forEach((v, i) => {
+        allTimeData = [...allTimeData, v.nPPMoV_Ct_mean];
+    });
+
+   // all time max and min
+   allTimeMax = Math.max(...allTimeData);
+   allTimeMin = Math.min(...allTimeData);
+
+
     // this sets up our 14 day chart and the previous and current week averages
     data.phesdData.forEach((v, i) => {
         if (v.sampleDate >= begindate && v.sampleDate <= data.lastUpdated) {
-            chartdata = [...chartdata, { "Date": new Date(v.sampleDate), "value": v.nPPMoV_Ct_mean }];
+            chartdata = [...chartdata, { "Date": new Date(v.sampleDate), "Channel":"data", "value": v.nPPMoV_Ct_mean  }];
+            chartdata = [...chartdata, { "Date": new Date(v.sampleDate), "Channel":"max", "value": allTimeMax  }];
+            chartdata = [...chartdata, { "Date": new Date(v.sampleDate), "Channel":"min", "value": allTimeMin  }];
+            
+ 
             valueMatrix = [...valueMatrix, v.nPPMoV_Ct_mean];
         }
         // the last 7 day window
-        if (v.sampleDate >= begindate && v.sampleDate <= sevenday) {
-            sevenDayWindow = [...sevenDayWindow,v.nPPMoV_Ct_mean];
+        if (v.sampleDate >= begindate && v.sampleDate < sevenday) {
+            fourteenDayWindow = [...fourteenDayWindow,v.nPPMoV_Ct_mean];
         }
         // the 14th to seventh day window
         if (v.sampleDate >= sevenday && v.sampleDate <= data.lastUpdated) {
-            fourteenDayWindow = [...fourteenDayWindow, v.nPPMoV_Ct_mean];
+            sevenDayWindow = [...sevenDayWindow, v.nPPMoV_Ct_mean];
         }
     }
     );
+
+ 
+    console.log("All Time Max " + allTimeMax);
+    console.log("All Time Min " + allTimeMin);
+
+
 
     // last week average
     for (i=0;i<sevenDayWindow.length;i++) {
@@ -100,13 +125,14 @@ function chartme(data) {
 
 var svg = dimple.newSvg("#fourteenDayChart", 400, 400);
 
-
  var myChart = new dimple.chart(svg, chartdata);
  myChart.setBounds(60, 30, 365, 305);
  var x = myChart.addCategoryAxis("x", "Date");
  x.addOrderRule("Date");
  myChart.addMeasureAxis("y", "value");
- var s = myChart.addSeries(null, dimple.plot.line);
+ myChart.addLegend(60, 10, 330, 20, "left");
+ var s = myChart.addSeries("Channel", dimple.plot.line);
+ 
  myChart.draw();
     
 }
