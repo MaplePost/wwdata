@@ -1,3 +1,18 @@
+
+/**
+ * CONSTANTS FOR READABILITY AND RE-USE
+ */
+/// Display ID's for our widgets
+const LAST_WEEK_AVERAGE_WIDGET = "#lastValue";
+const THIS_WEEK_AVERAGE_WIDGET = "#currentValue";
+const FOURTEEN_DAY_CHART_WIDGET = "#fourteenDayChart";
+const MAX_MIN_WIDGET = "#maxmin";
+const LAST_UPDATED_DATE_WIDGET = "#lastUpdated";
+const LOCAL_STATUS_WIDGET = "#localStatus";
+const VALUE_UP_WIDGET = "#WwUp";
+const VALUE_DOWN_WIDGET = "#WwDown";
+const VALUE_SAME_WIDGET = "#WwSame";
+
 // requjiring jQuery to be loaded
 // this function is called when the document object model is ready
 $(document).ready(function () {
@@ -34,7 +49,7 @@ function chartme(data) {
 
     // using date math to determine our beginning window of data
     // we want 14 days window beginning at the last updated
-    // the data provided by java for date is in millisecond ephoc format alreadey
+    // the data provided by java for date is in millisecond epoc format already
     // we we can use them directly in date math without having to translate them
     var begindate = data.lastUpdated -  daysToMs(14)
     // this is our 7 day window point
@@ -42,6 +57,7 @@ function chartme(data) {
 
     // calculate all time max and mins
     // this sets up our 14 day chart and the previous and current week averages
+    // this needs to be done before our 14 day processing below
     data.phesdData.forEach((v, i) => {
         allTimeData = [...allTimeData, v.nPPMoV_Ct_mean];
     });
@@ -77,13 +93,12 @@ function chartme(data) {
     }
     );
 
-//// below we set all of our data to html
+    /////            UI SETTINGS HERE    ///////////////////
+    //// below we set all of our data to our html document
 
-    console.log("All Time Max " + allTimeMax);
-    console.log("All Time Min " + allTimeMin);
-
+ 
     // the max min display widget
-    $("#maxmin").html(Math.round(allTimeMax * 100) / 100 + " / " + Math.round(allTimeMin * 100) / 100);
+    $(MAX_MIN_WIDGET).html(Math.round(allTimeMax * 100) / 100 + " / " + Math.round(allTimeMin * 100) / 100);
 
     // this week average
     for (i = 0; i < sevenDayWindow.length; i++) {
@@ -97,21 +112,17 @@ function chartme(data) {
     }
     previousWeekAverage = previousWeekAverage / fourteenDayWindow.length;
 
-    console.log("Maximum in last 14 days " + Math.max(...valueMatrix));
-    console.log("Minimum in last 14 days " + Math.min(...valueMatrix));
-    console.log("Current 7 day average " + currentWeekAverage);
-    console.log("Previous 7 day average " + previousWeekAverage);
 
     // the data provided by java is not the weekly averages we adjust it here
     data.lastValue = previousWeekAverage;
     data.currentValue = currentWeekAverage;
 
     // load the data set from the data pasered in wwdataLoad function
-    $("#lastValue").html(Math.round(previousWeekAverage * 100) / 100);
+    $(LAST_WEEK_AVERAGE_WIDGET).html(Math.round(previousWeekAverage * 100) / 100);
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const event = new Date(data.lastUpdated);
 
-    $("#lastUpdated").html(event.toLocaleDateString(undefined, options));
+    $(LAST_UPDATED_DATE_WIDGET).html(event.toLocaleDateString(undefined, options));
     // let's check how far out the current date and last processed date is
     const d = new Date();
     let t0 = d.getTime();
@@ -123,27 +134,28 @@ function chartme(data) {
     if ((t0 - data.lastUpdated) > daysToMs(1)) {
         status = "Data is " + Math.round(days) + " days old";
     }
-    $("#localStatus").html(status);
-    $("#currentValue").html(Math.round(currentWeekAverage * 100) / 100);
+    $(LOCAL_STATUS_WIDGET).html(status);
+    $(THIS_WEEK_AVERAGE_WIDGET).html(Math.round(currentWeekAverage * 100) / 100);
 
     console.log(data.lastValue);
     console.log(data.currentValue);
 
-    $("#WwUp").hide();
-    $("#WwDown").hide();
-    $("#WwSame").hide();
+    $(VALUE_UP_WIDGET).hide();
+    $(VALUE_DOWN_WIDGET).hide();
+    $(VALUE_SAME_WIDGET).hide();
     if (data.lastValue < data.currentValue) {
-        $("#WwUp").show();
+        $(VALUE_UP_WIDGET).show();
     } else if (data.lastValue > data.currentValue) {
-        $("#WwDown").show();
+        $(VALUE_DOWN_WIDGET).show();
     } else {
-        $("#WwSame").show();
+        $(VALUE_SAME_WIDGET).show();
     }
-
+    ////////////////   14 DAY CHART HAPPENS HERE  //////////
     // let's make a chart here using dimple and our prepared data set in chartdata
-
-    var svg = dimple.newSvg("#fourteenDayChart", 400, 400);
-
+    // dimple api document is here
+    // https://github.com/PMSI-AlignAlytics/dimple/wiki
+    //
+    var svg = dimple.newSvg(FOURTEEN_DAY_CHART_WIDGET, 400, 400);
     var myChart = new dimple.chart(svg, chartdata);
     myChart.setBounds(60, 30, 300, 300);
     var x = myChart.addCategoryAxis("x", "Date");
@@ -153,6 +165,17 @@ function chartme(data) {
     var s = myChart.addSeries("Channel", dimple.plot.line);
 
     myChart.draw();
+
+
+    /////// CONSOLE LOGGING HAPPENS HERE TO DEBUG ANY MATHS
+
+    console.log("All Time Max " + allTimeMax);
+    console.log("All Time Min " + allTimeMin);
+    console.log("Maximum in last 14 days " + Math.max(...valueMatrix));
+    console.log("Minimum in last 14 days " + Math.min(...valueMatrix));
+    console.log("Current 7 day average " + currentWeekAverage);
+    console.log("Previous 7 day average " + previousWeekAverage);
+
 
 }
 
