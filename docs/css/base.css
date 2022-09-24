@@ -26,12 +26,6 @@ body {
   right: 0;
 }
 
-.word-data{
-  color: #fec7d7;
-
-}
-
-
 /* Widget */
 .widget {
   background-color: #D9D4E7;
@@ -65,4 +59,8 @@ body {
 
 .wastewater-status{
   width: 10rem;
+}
+
+#FooterSpace {
+  visibility: hidden;
 }

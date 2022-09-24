@@ -20,11 +20,11 @@
     <![endif]-->
 
     <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/docs/img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/docs/img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/docs/img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../docs/img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../docs/img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../docs/img/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
-  <link rel="mask-icon" href="/docs/img/safari-pinned-tab.svg" color="#7a2ffc">
+  <link rel="mask-icon" href="../docs/img/safari-pinned-tab.svg" color="#7a2ffc">
   <meta name="msapplication-TileColor" content="#fec7d7">
   <meta name="theme-color" content="#ffffff">
   </head>
@@ -32,92 +32,69 @@
 
 
   <div class="widget warning">
-    <p>This site is under construction, and the data is not valid (yet &#128520;).</p>
+    <p>&#128296; This site is under construction, and the <span id="localStatus">*PROCESSING*</span>.</p>
   </div>
 
 	<div class="container">
 		<h1>Wastewater Levels</h1>
 	</div>
 
-  <div class="flex container">
+  <section class="container">
+    <h2> Weekly average </h2>
+  <div class="flex">
     <div class="widget">
       <!-- these values are set by the javascript process if you see ###### then you need to be serving this from a real web server -->
       <h2 id="lastValue">*PROCESSING*</h2> <!--DATA GOES HERE -->
-      <p>Last 7 Day Avg.</p>
+      <p>Last week</p>
     </div>
     <div class="widget">
       <h2 id="currentValue">*PROCESSING*</h2> <!--DATA GOES HERE -->
-      <p>7 Day Avg.</p>
-    </div>
-    <div class="widget">
-      <h2 id="maxmin">*PROCESSING*</h2> <!--DATA GOES HERE -->
-      <p>All Time Max / Min</p>
-    </div>
-
-    <div class="widget" id="fourteenDayChart">
-
+      <p>This week</p>
     </div>
 
     <div id="WwSame" class="container wastewater-status">
       <img src="img/wastewater-same.svg" alt="Wastewater Same" height="65" width="40">
-      <p>Wastewater levels have remained the same over the last week.</p>
+      <p>Average wastewater levels have remained the same over the last week.</p>
     </div>
     <div id="WwUp" class="container wastewater-status">
     <img src="img/wastewater-up.svg" alt="Wastewater Up" height="65" width="40">
-    <p>Wastewater levels have gone up over the last week.</p>
+    <p>Average wastewater levels have gone up over the last week.</p>
   </div>
   <div id="WwDown" class="container wastewater-status">
     <img src="img/wastewater-down.svg" alt="Wastewater Down" height="65" width="40">
-    <p>Wastewater levels have gone down over the last week.</p>
+    <p>Average wastewater levels have gone down over the last week.</p>
   </div>
-  </div>
-
-  <!--Banners -->
-  <div class="container">
-    <h2>Banner styles</h2>
-  </div>
-  <div class="widget error">
-    <p>This is an error message.</p>
-  </div>
-  <div class="widget warning">
-    <p>This is a warning message.</p>
-  </div>
-  <div class="widget success">
-    <p>This is a success message.</p>
-  </div>
-    <div class="widget status">
-    <p>This is a status message.</p>
-  </div>
-
-  <div class="container">
-    <h2>Wastewater change styles</h2>
-  </div>
-  <section class="flex">
-  <div class="container wastewater-status">
-    <img src="img/wastewater-same.svg" alt="Wastewater Same" height="65" width="40">
-    <p>Wastewater levels have remained the same over the last week.</p>
-  </div>
-  <div class="container wastewater-status">
-    <img src="img/wastewater-up.svg" alt="Wastewater Up" height="65" width="40">
-    <p>Wastewater levels have gone up over the last week.</p>
-  </div>
-  <div class="container wastewater-status">
-    <img src="img/wastewater-down.svg" alt="Wastewater Down" height="65" width="40">
-    <p>Wastewater levels have gone down over the last week.</p>
   </div>
 </section>
+
+    <div id="fourteenDayChart">
+    </div>
+
+<section class="container">
+  <h2>All time</h2>
+  <div class="flex">
+    <div class="widget error">
+      <h2 id="max">*PROCESSING*</h2> <!--DATA GOES HERE -->
+      <p>Highest level</p>
+    </div>
+       <div class="widget success">
+      <h2 id="min">*PROCESSING*</h2> <!--DATA GOES HERE -->
+      <p>Lowest level</p>
+    </div>
+  </div>
+  </section>
 
 <!-- Site Status -->
   <footer class="flex widget status floating">
     <p>
-      This site was last updated on <span id="lastUpdated" class="word-data">*PROCESSING*</span>, and the status is <span id="localStatus" class="word-data">#########</span>.
+      This site was last updated on <span id="lastUpdated" class="word-data">*PROCESSING*</span>.
     </p>
     </footer>
 
     <!--I'm just using this until I figure out what I'm doing for show/hide on the floating footer don't judge meeee -->
-    <div class="flex widget status">
+    <div id="FooterSpace" class="flex widget status">
     <p>
-      This site was last updated on <span id="lastUpdated" class="word-data">*PROCESSING*</span>, and the status is <span id="localStatus" class="word-data">#########</span>.
+      This site was last updated on <span id="lastUpdated">*PROCESSING*</span>, and the status is <span id="localStatus">*PROCESSING*</span>.
     </p>
     </footer>
 

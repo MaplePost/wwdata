@@ -6,7 +6,8 @@
 const LAST_WEEK_AVERAGE_WIDGET = "#lastValue";
 const THIS_WEEK_AVERAGE_WIDGET = "#currentValue";
 const FOURTEEN_DAY_CHART_WIDGET = "#fourteenDayChart";
-const MAX_MIN_WIDGET = "#maxmin";
+const MAX_WIDGET = "#max";
+const MIN_WIDGET = "#min";
 const LAST_UPDATED_DATE_WIDGET = "#lastUpdated";
 const LOCAL_STATUS_WIDGET = "#localStatus";
 const VALUE_UP_WIDGET = "#WwUp";
@@ -76,10 +77,10 @@ function chartme(data) {
             var showDate = new Date(v.sampleDate);
             var display = showDate.toLocaleDateString(undefined, chartDateOptions);
 
-            chartdata = [...chartdata, { "Date": display, "Channel": "data", "value": v.nPPMoV_Ct_mean }];
+            chartdata = [...chartdata, { "Date": display, "Channel": "Current level", "value": v.nPPMoV_Ct_mean }];
             // we create 2 other series to show max and min bounding lines
-            chartdata = [...chartdata, { "Date": display, "Channel": "max", "value": allTimeMax }];
-            chartdata = [...chartdata, { "Date": display, "Channel": "min", "value": allTimeMin }];
+            chartdata = [...chartdata, { "Date": display, "Channel": "Highest level", "value": allTimeMax }];
+            chartdata = [...chartdata, { "Date": display, "Channel": "Lowest level", "value": allTimeMin }];
             valueMatrix = [...valueMatrix, v.nPPMoV_Ct_mean];
         }
         // the last 7 day window
@@ -98,7 +99,8 @@ function chartme(data) {
 
  
     // the max min display widget
-    $(MAX_MIN_WIDGET).html(Math.round(allTimeMax * 100) / 100 + " / " + Math.round(allTimeMin * 100) / 100);
+    $(MAX_WIDGET).html(Math.round(allTimeMax * 100) / 100);
+    $(MIN_WIDGET).html(Math.round(allTimeMin * 100) / 100);
 
     // this week average
     for (i = 0; i < sevenDayWindow.length; i++) {
@@ -132,7 +134,7 @@ function chartme(data) {
 
     // if the time is > 1 day then set statis to show that the data is outdated based on useres conputer's date
     if ((t0 - data.lastUpdated) > daysToMs(1)) {
-        status = "Data is " + Math.round(days) + " days old";
+        status = "data is " + Math.round(days) + " days old";
     }
     $(LOCAL_STATUS_WIDGET).html(status);
     $(THIS_WEEK_AVERAGE_WIDGET).html(Math.round(currentWeekAverage * 100) / 100);
