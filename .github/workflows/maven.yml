@@ -16,6 +16,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    # Make sure the @v0.5.4 matches the current version of the
+    # action 
+    - uses: webfactory/ssh-agent@v0.5.4
+      with:
+            ssh-private-key: ${{ secrets.ID_KEY }}
     - name: Checkout submodules
       run: git submodule update --init --recursive
     - name: Set up JDK 11
