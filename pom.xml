@@ -18,7 +18,8 @@
                 <artifactId>exec-maven-plugin</artifactId>  
                 <version>1.1.1</version>  
                 <executions>  
-                    <execution><!-- Run our version calculation script -->
+                    <execution>
+                    <!-- Run our pre process to deal with the data git submodule changes -->
                         <id>preprocess</id>
                         <phase>compile</phase>
                         <goals>
@@ -31,7 +32,9 @@
                             </environmentVariables>
                         </configuration>
                     </execution>
-                    <execution>  
+                    <execution>
+                    <!-- Run our process to marshall the data to json format -->
+                        <id>java process</id>  
                         <phase>compile</phase>  
                         <goals>  
                             <goal>java</goal>  
@@ -44,7 +47,8 @@
                             <includeProjectDependencies>true</includeProjectDependencies>
                         </configuration>  
                     </execution> 
-                    <execution><!-- Run our version calculation script -->
+                    <execution>
+                    <!-- Run our post process to update the data in the git module -->
                         <id>postprocess</id>
                         <phase>compile</phase>
                         <goals>
