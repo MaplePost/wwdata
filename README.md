@@ -36,5 +36,5 @@ The building has the following processes run in order:
 2. The java class ca.maplepost.wwdata.Wwdata. This translates the data into json format for use on the static site
 3. postprocess.sh  This commits and pushes the submodule updates and the process update from step 2 (if it makes it)
 
-
+[![Java CI with Maven](https://github.com/MaplePost/wwdata/actions/workflows/maven.yml/badge.svg)](https://github.com/MaplePost/wwdata/actions/workflows/maven.yml)
 
