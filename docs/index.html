@@ -40,13 +40,17 @@
   <div class="flex container">
     <div class="widget">
       <!-- these values are set by the javascript process if you see ###### then you need to be serving this from a real web server -->
-      <h2 id="lastValue">#######</h2> <!--DATA GOES HERE -->
-      <p>Last Week</p>
+      <h2 id="lastValue">*PROCESSING*</h2> <!--DATA GOES HERE -->
+      <p>Last 7 Day Avg.</p>
     </div>
     <div class="widget">
-      <h2 id="currentValue">#######</h2> <!--DATA GOES HERE -->
-      <p>This Week</p>
+      <h2 id="currentValue">*PROCESSING*</h2> <!--DATA GOES HERE -->
+      <p>7 Day Avg.</p>
     </div>
+    <div class="widget" id="fourteenDayChart">
+      
+    </div>
+
     <div id="WwSame" class="container wastewater-status">
       <img src="img/wastewater-same.svg" alt="Wastewater Same" height="65" width="40">
       <p>Wastewater levels have remained the same over the last week.</p>
@@ -99,14 +103,14 @@
 <!-- Site Status -->
   <footer class="flex widget status floating">
     <p>
-      This site was last updated on <span id="lastUpdated" class="word-data">#########</span>, and the status is <span id="localStatus" class="word-data">#########</span>.
+      This site was last updated on <span id="lastUpdated" class="word-data">*PROCESSING*</span>, and the status is <span id="localStatus" class="word-data">#########</span>.
     </p>
     </footer>
 
     <!--I'm just using this until I figure out what I'm doing for show/hide on the floating footer don't judge meeee -->
     <div class="flex widget status">
     <p>
-      This site was last updated on <span id="lastUpdated" class="word-data">#########</span>, and the status is <span id="localStatus" class="word-data">#########</span>.
+      This site was last updated on <span id="lastUpdated" class="word-data">*PROCESSING*</span>, and the status is <span id="localStatus" class="word-data">#########</span>.
     </p>
     </footer>
 

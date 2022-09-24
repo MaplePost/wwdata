@@ -9,16 +9,78 @@ $( document ).ready(function() {
  *  Called in the event the data set is loaded
  */
 function chartme(data) {
-    console.log( "load succcess : chartme() " );
+    console.log("load succcess : chartme() ");
+
+
+    //Our custom chart data
+    var chartdata = [];
+    var valueMatrix = [];
+    var sevenDayWindow = [];
+    var fourteenDayWindow = [];
+    var previousWeekAverage = 0.0;
+    var currentWeekAverage = 0.0;
+
+    // using date math to determine our beginning window of data
+    // we want 14 days window beginning at the last updated
+    var begindate = data.lastUpdated - 14 * 24 * 60 * 60 * 1000;
+    // this is our 7 day window
+    var sevenday = data.lastUpdated - 7 * 24 * 60 * 60 * 1000;
+    
+    // this sets up our 14 day chart and the previous and current week averages
+    data.phesdData.forEach((v, i) => {
+        if (v.sampleDate >= begindate && v.sampleDate <= data.lastUpdated) {
+            chartdata = [...chartdata, { "Date": new Date(v.sampleDate), "value": v.nPPMoV_Ct_mean }];
+            valueMatrix = [...valueMatrix, v.nPPMoV_Ct_mean];
+        }
+        // the last 7 day window
+        if (v.sampleDate >= begindate && v.sampleDate <= sevenday) {
+            sevenDayWindow = [...sevenDayWindow,v.nPPMoV_Ct_mean];
+        }
+        // the 14th to seventh day window
+        if (v.sampleDate >= sevenday && v.sampleDate <= data.lastUpdated) {
+            fourteenDayWindow = [...fourteenDayWindow, v.nPPMoV_Ct_mean];
+        }
+    }
+    );
+
+    // last week average
+    for (i=0;i<sevenDayWindow.length;i++) {
+        currentWeekAverage += sevenDayWindow[i];
+    }
+    currentWeekAverage = currentWeekAverage / sevenDayWindow.length;
+
+        // last week average
+        for (i=0;i<fourteenDayWindow.length;i++) {
+            previousWeekAverage +=  fourteenDayWindow[i];
+        }
+        previousWeekAverage = previousWeekAverage / fourteenDayWindow.length;
+    
+    console.log("Maximum in last 14 days " + Math.max(...valueMatrix));
+    console.log("Minimum in last 14 days " + Math.min(...valueMatrix));
+    console.log("Current 7 day average "+ currentWeekAverage);
+    console.log("Previous 7 day average "+ previousWeekAverage);
+
+    // the data provided by java is not the weekly averages we adjust it here
+    data.lastValue = previousWeekAverage;
+    data.currentValue = currentWeekAverage;
 
     // load the data set from the data pasered in wwdataLoad function
-    $("#lastValue").html(data.lastValue);
+    $("#lastValue").html(Math.round(previousWeekAverage * 100 )/ 100 );
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const event = new Date(data.lastUpdated);
 
     $("#lastUpdated").html(event.toLocaleDateString(undefined, options));
-    $("#localStatus").html("OK");
-    $("#currentValue").html(data.currentValue);
+    // let's check how far out the current date and last processed date is
+    const d = new Date();
+    let t0 = d.getTime();
+    var days = (t0 - data.lastUpdated) / (1000 * 24 * 60 * 60);
+    var status = "OK";
+
+    if ((t0 - data.lastUpdated) > 1000 * 24 * 60 * 60) {
+        status = "Data is " + Math.round(days) + " days old"; 
+    }
+    $("#localStatus").html(status);
+    $("#currentValue").html(Math.round(currentWeekAverage * 100) / 100);
 
     console.log(data.lastValue);
     console.log(data.currentValue);
@@ -26,20 +88,17 @@ function chartme(data) {
     $("#WwUp").hide();
     $("#WwDown").hide();
     $("#WwSame").hide();
-    if(data.lastValue < data.currentValue){
+    if (data.lastValue < data.currentValue) {
         $("#WwUp").show();
-    } else if(data.lastValue> data.currentValue){
+    } else if (data.lastValue > data.currentValue) {
         $("#WwDown").show();
     } else {
         $("#WwSame").show();
     }
 
-//Using forEach()
-var chartdata = [];
-data.phesdData.forEach((v,i) => 
-   chartdata= [...chartdata, {"Date": new Date(v.sampleDate), "value":v.nPPMoV_Ct_mean}]
-)
-console.log("chart data" + chartdata);
+
+
+    
 }
 
 /**
