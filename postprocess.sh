@@ -6,5 +6,7 @@ echo "******* post-processing *****"
 env
 cd "${WORKSPACE}"
 git commit -am "maven build source update ${DATE}"
+git push
+
 
 
