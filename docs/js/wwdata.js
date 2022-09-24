@@ -19,6 +19,13 @@ function chartme(data) {
 
     console.log(data.lastValue);
     console.log(data.currentValue);
+
+//Using forEach()
+var chartdata = [];
+data.phesdData.forEach((v,i) => 
+   chartdata= [...chartdata, {"Date": new Date(v.sampleDate), "value":v.nPPMoV_Ct_mean}]
+)
+console.log("chart data" + chartdata);
 }
 
 /**
