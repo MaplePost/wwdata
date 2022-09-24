@@ -18,7 +18,7 @@ function chartme(data) {
     var chartdata = [];
     // all data samples
     var allTimeData = [];
-    // a value matrix for calculations for the4 past 14 days
+    // a value matrix for calculations for the past 14 days
     var valueMatrix = [];
     //the 7 day readings
     var sevenDayWindow = [];
@@ -36,9 +36,9 @@ function chartme(data) {
     // we want 14 days window beginning at the last updated
     // the data provided by java for date is in millisecond ephoc format alreadey
     // we we can use them directly in date math without having to translate them
-    var begindate = data.lastUpdated - 14 * 24 * 60 * 60 * 1000;
+    var begindate = data.lastUpdated -  daysToMs(14)
     // this is our 7 day window point
-    var sevenday = data.lastUpdated - 7 * 24 * 60 * 60 * 1000;
+    var sevenday = data.lastUpdated - daysToMs(7);
 
     // calculate all time max and mins
     // this sets up our 14 day chart and the previous and current week averages
@@ -115,10 +115,12 @@ function chartme(data) {
     // let's check how far out the current date and last processed date is
     const d = new Date();
     let t0 = d.getTime();
-    var days = (t0 - data.lastUpdated) / (1000 * 24 * 60 * 60);
+    // number of millisseconds passed from last update and the current date as per users computer
+    var days = (t0 - data.lastUpdated) / (daysToMs(1));
     var status = "OK";
 
-    if ((t0 - data.lastUpdated) > 1000 * 24 * 60 * 60) {
+    // if the time is > 1 day then set statis to show that the data is outdated based on useres conputer's date
+    if ((t0 - data.lastUpdated) > daysToMs(1)) {
         status = "Data is " + Math.round(days) + " days old";
     }
     $("#localStatus").html(status);
@@ -168,4 +170,14 @@ function wwdataLoad() {
         success: chartme
     });
 
+}
+
+/**
+ * Utility function to calculate number of milliseconds given number of days 
+ * @param {*} days the numner of days to calculate
+ * @returns the number of milliseconds based on number of days
+ */
+function daysToMs(days) {
+    // 24 hrs/day * 60 minutes/hr * 60 sec/minute * 1000 ms/s
+    return days * 24 * 60 * 60 * 1000;
 }
