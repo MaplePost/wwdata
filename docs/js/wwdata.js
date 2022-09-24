@@ -13,12 +13,26 @@ function chartme(data) {
 
     // load the data set from the data pasered in wwdataLoad function
     $("#lastValue").html(data.lastValue);
-    $("#lastUpdated").html("last updated:" + new Date(data.lastUpdated));
-    $("#localStatus").html("status: OK");
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const event = new Date(data.lastUpdated);
+
+    $("#lastUpdated").html(event.toLocaleDateString(undefined, options));
+    $("#localStatus").html("OK");
     $("#currentValue").html(data.currentValue);
 
     console.log(data.lastValue);
     console.log(data.currentValue);
+
+    $("#WwUp").hide();
+    $("#WwDown").hide();
+    $("#WwSame").hide();
+    if(data.lastValue < data.currentValue){
+        $("#WwUp").show();
+    } else if(data.lastValue> data.currentValue){
+        $("#WwDown").show();
+    } else {
+        $("#WwSame").show();
+    }
 
 //Using forEach()
 var chartdata = [];
