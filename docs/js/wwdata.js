@@ -14,13 +14,12 @@ const VALUE_UP_WIDGET = "#WwUp";
 const VALUE_DOWN_WIDGET = "#WwDown";
 const VALUE_SAME_WIDGET = "#WwSame";
 
-// requjiring jQuery to be loaded
+// requjiring jQuery 3+ to be loaded
 // this function is called when the document object model is ready
-$(document).ready(function () {
-    console.log("ready!");
+
+$(function() {
     wwdataLoad();
 });
-
 /**
  *  Called in the event the data set is loaded this prepares and calculates our
  * data points including all time max and min, the 7 day average for this week and the previous
