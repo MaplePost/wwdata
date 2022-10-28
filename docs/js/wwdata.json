@@ -1,7 +1,7 @@
 {
-  "lastValue" : 27.60856767,
-  "currentValue" : 27.82474171,
-  "lastUpdated" : 1666483200000,
+  "lastValue" : 27.01333333,
+  "currentValue" : 26.82794257,
+  "lastUpdated" : 1666656000000,
   "phesdData" : [ {
     "sampleDate" : 1586304000000,
     "sampleID" : "NA",
@@ -8868,5 +8868,27 @@
     "covN2_nPMMoV_meanNr" : 6.40691E-4,
     "covN2_nPMMoV_sdNr" : 8.8219E-5,
     "nPPMoV_Ct_mean" : 27.82474171
+  }, {
+    "sampleDate" : 1666569600000,
+    "sampleID" : "o.10.24.22",
+    "siteID" : "Ottawa-1",
+    "siteName" : "Ottawa-ROPEC",
+    "reportDate" : "2022-10-25",
+    "covN1_nPMMoV_meanNr" : 2.35977E-4,
+    "covN1_nPMMoV_sdNr" : 3.3857E-5,
+    "covN2_nPMMoV_meanNr" : 3.58517E-4,
+    "covN2_nPMMoV_sdNr" : 7.0286E-5,
+    "nPPMoV_Ct_mean" : 27.01333333
+  }, {
+    "sampleDate" : 1666656000000,
+    "sampleID" : "o.10.25.22",
+    "siteID" : "Ottawa-1",
+    "siteName" : "Ottawa-ROPEC",
+    "reportDate" : "2022-10-26",
+    "covN1_nPMMoV_meanNr" : 4.72887E-4,
+    "covN1_nPMMoV_sdNr" : 1.9082E-5,
+    "covN2_nPMMoV_meanNr" : 4.55177E-4,
+    "covN2_nPMMoV_sdNr" : 2.1006E-5,
+    "nPPMoV_Ct_mean" : 26.82794257
   } ]
 }
