@@ -1,7 +1,7 @@
 {
-  "lastValue" : 28.82666667,
-  "currentValue" : 28.45333333,
-  "lastUpdated" : 1693094400000,
+  "lastValue" : 28.70176947,
+  "currentValue" : 28.22923829,
+  "lastUpdated" : 1693440000000,
   "phesdData" : [ {
     "sampleDate" : 1586304000000,
     "sampleID" : "NA",
@@ -12146,5 +12146,60 @@
     "covN2_nPMMoV_meanNr" : 7.23238E-4,
     "covN2_nPMMoV_sdNr" : 2.4866E-5,
     "nPPMoV_Ct_mean" : 28.45333333
+  }, {
+    "sampleDate" : 1693008000000,
+    "sampleID" : "o.08.26.23",
+    "siteID" : "Ottawa-1",
+    "siteName" : "Ottawa-ROPEC",
+    "reportDate" : "2023-08-28",
+    "covN1_nPMMoV_meanNr" : 3.3815E-4,
+    "covN1_nPMMoV_sdNr" : 1.5782E-5,
+    "covN2_nPMMoV_meanNr" : 6.61425E-4,
+    "covN2_nPMMoV_sdNr" : 3.4664E-5,
+    "nPPMoV_Ct_mean" : 26.90020619
+  }, {
+    "sampleDate" : 1693267200000,
+    "sampleID" : "o.08.29.23",
+    "siteID" : "Ottawa-1",
+    "siteName" : "Ottawa-ROPEC",
+    "reportDate" : "2023-08-30",
+    "covN1_nPMMoV_meanNr" : 1.75251E-4,
+    "covN1_nPMMoV_sdNr" : 2.6288E-5,
+    "covN2_nPMMoV_meanNr" : 4.16437E-4,
+    "covN2_nPMMoV_sdNr" : 8.3004E-5,
+    "nPPMoV_Ct_mean" : 27.91924903
+  }, {
+    "sampleDate" : 1693180800000,
+    "sampleID" : "o.08.28.23_r",
+    "siteID" : "Ottawa-1",
+    "siteName" : "Ottawa-ROPEC",
+    "reportDate" : "2023-08-29",
+    "covN1_nPMMoV_meanNr" : 3.15913E-4,
+    "covN1_nPMMoV_sdNr" : 2.0824E-5,
+    "covN2_nPMMoV_meanNr" : 5.38041E-4,
+    "covN2_nPMMoV_sdNr" : 9.5828E-5,
+    "nPPMoV_Ct_mean" : 27.52060993
+  }, {
+    "sampleDate" : 1693353600000,
+    "sampleID" : "o.08.30.23",
+    "siteID" : "Ottawa-1",
+    "siteName" : "Ottawa-ROPEC",
+    "reportDate" : "2023-08-31",
+    "covN1_nPMMoV_meanNr" : 2.76837E-4,
+    "covN1_nPMMoV_sdNr" : 5.9951E-5,
+    "covN2_nPMMoV_meanNr" : 6.21035E-4,
+    "covN2_nPMMoV_sdNr" : 2.4603E-5,
+    "nPPMoV_Ct_mean" : 28.70176947
+  }, {
+    "sampleDate" : 1693440000000,
+    "sampleID" : "o.08.31.23",
+    "siteID" : "Ottawa-1",
+    "siteName" : "Ottawa-ROPEC",
+    "reportDate" : "2023-09-01",
+    "covN1_nPMMoV_meanNr" : 3.35057E-4,
+    "covN1_nPMMoV_sdNr" : 3.7753E-5,
+    "covN2_nPMMoV_meanNr" : 7.07034E-4,
+    "covN2_nPMMoV_sdNr" : 1.52014E-4,
+    "nPPMoV_Ct_mean" : 28.22923829
   } ]
 }
